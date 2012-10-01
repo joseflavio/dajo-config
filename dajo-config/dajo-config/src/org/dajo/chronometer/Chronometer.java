@@ -1,6 +1,6 @@
 package org.dajo.chronometer;
 
-public final class Chronometer {
+public class Chronometer {
 
     private final String taskName;
 
@@ -12,6 +12,14 @@ public final class Chronometer {
         this.taskName = taskName;
     }
 
+    public Chronometer(final Object taskClass, final String subTaskName) {
+        this.taskName = taskClass.getClass().getName() + "#" + subTaskName;
+    }
+
+    public Chronometer(final Object taskClass, final String subTaskName, final Object subsubtaskClass) {
+        this.taskName = taskClass.getClass().getName() + "#" + subTaskName + "#" + subsubtaskClass.getClass().getName();
+    }
+
     public Chronometer(final Class<?> taskClassName) {
         this.taskName = taskClassName.getName();
     }
@@ -20,7 +28,7 @@ public final class Chronometer {
         startTime = System.nanoTime();
     }
 
-    public void stop() {
+    public void close() {
         endTime = System.nanoTime();
     }
 
