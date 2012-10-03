@@ -3,8 +3,8 @@ package org.dajo.framework.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.dajo.framework.adapters.TypeAdapter;
-import org.dajo.framework.adapters.TypeAdapterResult;
+import org.dajo.types.TypeAdapter;
+import org.dajo.types.TypeAdapterResult;
 
 public final class SimpleConfigAccessor implements ConfigAccessor {
 

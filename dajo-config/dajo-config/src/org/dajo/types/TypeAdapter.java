@@ -1,4 +1,5 @@
-package org.dajo.framework.adapters;
+package org.dajo.types;
+
 
 public interface TypeAdapter<T, K> {
 

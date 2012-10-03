@@ -1,4 +1,4 @@
-package org.dajo.framework.adapters;
+package org.dajo.types;
 
 public final class TypeAdapterResult<T> {
 

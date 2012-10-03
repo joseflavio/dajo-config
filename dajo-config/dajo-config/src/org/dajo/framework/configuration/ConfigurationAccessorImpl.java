@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.dajo.framework.adapters.TypeAdapter;
-import org.dajo.framework.adapters.TypeAdapterResult;
+import org.dajo.types.TypeAdapter;
+import org.dajo.types.TypeAdapterResult;
 
 public final class ConfigurationAccessorImpl implements ConfigAccessor {
 

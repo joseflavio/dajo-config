@@ -1,4 +1,7 @@
-package org.dajo.framework.adapters;
+package org.dajo.framework.filepath;
+
+import org.dajo.types.TypeAdapter;
+import org.dajo.types.TypeAdapterResult;
 
 
 public final class DajoFilepathAdapter implements TypeAdapter<DajoFilepath, String> {

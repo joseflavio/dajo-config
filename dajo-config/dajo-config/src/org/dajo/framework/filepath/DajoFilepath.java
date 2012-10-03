@@ -1,4 +1,4 @@
-package org.dajo.framework.adapters;
+package org.dajo.framework.filepath;
 
 
 public final class DajoFilepath {
