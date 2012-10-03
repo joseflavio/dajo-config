@@ -1,4 +1,4 @@
-package org.dajo.framework.configuration;
+package org.dajo.configuration;
 
 import java.io.File;
 import java.io.FileInputStream;

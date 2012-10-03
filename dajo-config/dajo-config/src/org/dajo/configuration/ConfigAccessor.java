@@ -1,4 +1,4 @@
-package org.dajo.framework.configuration;
+package org.dajo.configuration;
 
 import java.util.Map;
 
