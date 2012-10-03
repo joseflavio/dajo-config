@@ -2,7 +2,7 @@ package org.dajo.types;
 
 public class BooleanConverter {
 
-    static public boolean checkedConvert(final int value) {
+    static public boolean checkedIntToBool(final int value) {
         if (value == 0) {
             return false;
         }
