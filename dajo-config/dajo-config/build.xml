@@ -19,6 +19,7 @@
     <path id="project.classpath">
         <fileset dir="${jar.javac.lib.dir}">
             <include name="slf4j-api-1.7.1.jar"/>
+        	<include name="dajo-types-0.0.1.jar"/>
         </fileset>
     </path>
     
