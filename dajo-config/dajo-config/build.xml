@@ -109,4 +109,9 @@
 
     </target>
 
+    <target name="cleanup">
+        <delete dir="${tmp.dir}"/>
+        <mkdir dir="${tmp.dir}" />
+    </target>
+
 </project>
