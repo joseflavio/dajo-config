@@ -28,7 +28,7 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
     @Override
     public String getMandatoryProperty(final String propertyName) {
         String value = map.get(propertyName);
-        if( value == null ) {
+        if (value == null) {
             throw new RuntimeException("Missing mandatory property: " + propertyName);
         }
         return value;
@@ -36,9 +36,12 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
 
     @Override
     public <T> T getMandatoryProperty(final String propertyName, final TypeAdapter<T, String> adapter) {
-        String propertyStringValue = map.get(propertyName);
-        TypeAdapterResult<T> adapterResult = adapter.adapt(propertyStringValue);
-        if( adapterResult.isSuccess() == false ) {
+        String value = map.get(propertyName);
+        if (value == null) {
+            throw new RuntimeException("Missing mandatory property: " + propertyName);
+        }
+        TypeAdapterResult<T> adapterResult = adapter.adapt(value);
+        if (adapterResult.isSuccess() == false) {
             throw new RuntimeException("Missing mandatory property: " + propertyName);
         }
         return adapterResult.getValue();
@@ -46,12 +49,22 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
 
     @Override
     public String getOptionalProperty(final String propertyName, final String defaultValue) {
-        return null;
+        final String propertyValue = map.get(propertyName);
+        if (propertyValue == null) {
+            return defaultValue;
+        } else {
+            return propertyValue;
+        }
     }
 
     @Override
     public <T> T getOptionalProperty(final String propertyName, final TypeAdapter<T, String> adapter, final T defaultValue) {
-        return null;
+        final String propertyValue = map.get(propertyName);
+        TypeAdapterResult<T> adapterResult = adapter.adapt(propertyValue);
+        if (adapterResult.isSuccess() == false) {
+            return defaultValue;
+        }
+        return adapterResult.getValue();
     }
 
 }// class

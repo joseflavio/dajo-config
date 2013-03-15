@@ -56,7 +56,7 @@
         <javac
           optimize="true" deprecation="true" encoding="UTF-8" includeantruntime="false"
           destdir="${tmp.classes.dir}" debug="${jar.javac.debug}"
-          target="${jar.javac.target}" source="${jar.javac.source}" bootclasspath="${jar.javac.bootclasspath}">
+          target="${jar.javac.target}" source="${jar.javac.source}" bootclasspath="${jar.javac.bootclasspath16}">
             <src path="${tmp.classes.dir}" />
             <classpath refid="project.classpath"/>
         </javac>
