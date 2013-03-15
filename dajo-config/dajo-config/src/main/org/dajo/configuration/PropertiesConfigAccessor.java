@@ -8,11 +8,11 @@ import java.util.Set;
 import org.dajo.types.TypeAdapter;
 import org.dajo.types.TypeAdapterResult;
 
-public final class ConfigurationAccessorImpl implements ConfigAccessor {
+public final class PropertiesConfigAccessor implements ConfigAccessor {
 
     private final Properties properties;
 
-    public ConfigurationAccessorImpl(final Properties properties) {
+    public PropertiesConfigAccessor(final Properties properties) {
         this.properties = properties;
     }
 
@@ -27,14 +27,12 @@ public final class ConfigurationAccessorImpl implements ConfigAccessor {
         return availableProperties;
     }
 
-
     @Override
     public String getMandatoryProperty(final String propertyName) {
         final String propertyValue = properties.getProperty(propertyName);
         if (propertyValue == null) {
             throw new RuntimeException("Missing mandatory property. propertyName=" + propertyName);
-        }
-        else {
+        } else {
             return propertyValue;
         }
     }
@@ -44,22 +42,20 @@ public final class ConfigurationAccessorImpl implements ConfigAccessor {
         final String propertyValue = properties.getProperty(propertyName);
         if (propertyValue == null) {
             return defaultValue;
-        }
-        else {
+        } else {
             return propertyValue;
         }
     }
 
     @Override
     public <T> T getMandatoryProperty(final String propertyName, final TypeAdapter<T, String> adapter) {
-        final String propertyValue = properties.getProperty(propertyName);
-        if (propertyValue == null) {
+        final String value = properties.getProperty(propertyName);
+        if (value == null) {
             throw new RuntimeException("Missing mandatory property. propertyName=" + propertyName);
-        }
-        else {
-            TypeAdapterResult<T> adapterResult = adapter.adapt(propertyValue);
-            if( adapterResult.isSuccess() == false ) {
-                throw new RuntimeException("Invalid value for mandatory property. propertyName=" + propertyName + ", propertyValue="+propertyValue);
+        } else {
+            TypeAdapterResult<T> adapterResult = adapter.adapt(value);
+            if (adapterResult.isSuccess() == false) {
+                throw new RuntimeException("Invalid value for mandatory property. propertyName=" + propertyName + ", propertyValue=" + value);
             }
             return adapterResult.getValue();
         }
@@ -69,7 +65,7 @@ public final class ConfigurationAccessorImpl implements ConfigAccessor {
     public <T> T getOptionalProperty(final String propertyName, final TypeAdapter<T, String> adapter, final T defaultValue) {
         final String propertyValue = properties.getProperty(propertyName);
         TypeAdapterResult<T> adapterResult = adapter.adapt(propertyValue);
-        if( adapterResult.isSuccess() == false ) {
+        if (adapterResult.isSuccess() == false) {
             return defaultValue;
         }
         return adapterResult.getValue();

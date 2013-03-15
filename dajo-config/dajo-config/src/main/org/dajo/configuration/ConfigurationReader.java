@@ -10,7 +10,7 @@ public final class ConfigurationReader {
             String currentPropertyFilename = externalPropertiesFilenames[i];
             PropertiesLoader.loadExternalProperties(properties, currentPropertyFilename);
         }
-        ConfigurationAccessorImpl config = new ConfigurationAccessorImpl(properties);
+        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 
@@ -20,7 +20,7 @@ public final class ConfigurationReader {
             String currentPropertyFilename = externalPropertiesFilenames[i];
             PropertiesLoader.loadInternalClasspathProperties(PropertiesLoader.class.getClassLoader(), properties, currentPropertyFilename);
         }
-        ConfigurationAccessorImpl config = new ConfigurationAccessorImpl(properties);
+        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 
@@ -30,7 +30,7 @@ public final class ConfigurationReader {
             String currentPropertyFilename = externalPropertiesFilenames[i];
             PropertiesLoader.loadInternalClasspathProperties(classLoader, properties, currentPropertyFilename);
         }
-        ConfigurationAccessorImpl config = new ConfigurationAccessorImpl(properties);
+        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 

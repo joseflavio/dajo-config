@@ -42,7 +42,7 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
         }
         TypeAdapterResult<T> adapterResult = adapter.adapt(value);
         if (adapterResult.isSuccess() == false) {
-            throw new RuntimeException("Missing mandatory property: " + propertyName);
+            throw new RuntimeException("Invalid value for mandatory property. propertyName=" + propertyName + ", value=" + value);
         }
         return adapterResult.getValue();
     }
