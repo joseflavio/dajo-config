@@ -8,20 +8,20 @@
 
     <property name="source.dir" value="src/main"/>
 	
-    <property name="tmp.dir" value="tmp"/> <!-- for default value -->
+    <!-- for default value -->
+    <property name="tmp.dir" value="tmp"/>
 
-	<buildnumber file="mybuild.number"/>
-	
+    <!-- Dynamic properties -->
+	<buildnumber file="${ant.project.name}.number"/>
     <tstamp>
         <format property="build.timeid" pattern="yyyyMMdd-hhmmss" timezone="UTC"/>
     </tstamp>
-
 	<property name="build.id" value="${build.number}-${build.timeid}"/>
-	
     <tstamp>
         <format property="jar.manifest.builtdate" pattern="yyyy-MM-dd HH:mm:ss" />
     </tstamp>
 
+    <!-- Derivated properties -->
     <property name="tmp.basedir" value="${tmp.dir}/${jar.name}-${project.version}-jar"/>
     <property name="tmp.build.dir" value="${tmp.basedir}/${build.id}"/>
     <property name="tmp.classes.dir" value="${tmp.build.dir}/classes"/>
@@ -45,7 +45,6 @@
     </target>
 
     <target name="copy-sources">
-        <delete dir="${tmp.basedir}"/>
         <mkdir dir="${tmp.classes.dir}" />
         <copy todir="${tmp.classes.dir}">
             <fileset dir="${source.dir}" includes="**/*" />
@@ -89,16 +88,12 @@
         <mkdir dir="${tmp.build.dir}/manifest"/>
 
         <manifest file="${tmp.build.dir}/manifest/MANIFEST.MF">
-        	
             <attribute name="Built-By" value="${jar.manifest.builtby}"/>
-            <attribute name="Built-Date" value="${jar.manifest.builtdate}"/>
-        	
+            <attribute name="Built-Date" value="${jar.manifest.builtdate}"/>	
             <attribute name="Specification-Title" value="${jar.name}"/>
             <attribute name="Specification-Version" value="${project.version}"/>
             <attribute name="Implementation-Title" value="${jar.name}"/>
             <attribute name="Implementation-Version" value="${project.version}-b${build.id}"/>
-        	
-
         </manifest>
 
         <mkdir dir="${build.dest.dir}"/>
