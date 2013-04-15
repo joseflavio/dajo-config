@@ -2,7 +2,7 @@ package org.dajo.configuration;
 
 import java.util.Map;
 
-import org.dajo.types.TypeAdapter;
+import org.dajo.types.adapter.TypeAdapter;
 
 public interface ConfigAccessor {
 

@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.dajo.types.TypeAdapter;
-import org.dajo.types.TypeAdapterResult;
+import org.dajo.types.ValidatedReturn;
+import org.dajo.types.adapter.TypeAdapter;
 
 public final class PropertiesConfigAccessor implements ConfigAccessor {
 
@@ -53,22 +53,22 @@ public final class PropertiesConfigAccessor implements ConfigAccessor {
         if (value == null) {
             throw new RuntimeException("Missing mandatory property. propertyName=" + propertyName);
         } else {
-            TypeAdapterResult<T> adapterResult = adapter.adapt(value);
-            if (adapterResult.isSuccess() == false) {
+            ValidatedReturn<T> adapterResult = adapter.adapt(value);
+            if (adapterResult.isValid() == false) {
                 throw new RuntimeException("Invalid value for mandatory property. propertyName=" + propertyName + ", propertyValue=" + value);
             }
-            return adapterResult.getValue();
+            return adapterResult.value();
         }
     }
 
     @Override
     public <T> T getOptionalProperty(final String propertyName, final TypeAdapter<T, String> adapter, final T defaultValue) {
         final String propertyValue = properties.getProperty(propertyName);
-        TypeAdapterResult<T> adapterResult = adapter.adapt(propertyValue);
-        if (adapterResult.isSuccess() == false) {
+        final ValidatedReturn<T> adapterResult = adapter.adapt(propertyValue);
+        if (adapterResult.isValid() == false) {
             return defaultValue;
         }
-        return adapterResult.getValue();
+        return adapterResult.value();
     }
 
 }// class
