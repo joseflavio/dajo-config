@@ -3,8 +3,8 @@ package org.dajo.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.dajo.types.ValidatedReturn;
-import org.dajo.types.adapter.TypeAdapter;
+import org.dajo.types.Function;
+import org.dajo.types.Optional;
 
 public final class SimpleConfigAccessor implements ConfigAccessor {
 
@@ -35,16 +35,16 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
     }
 
     @Override
-    public <T> T getMandatoryProperty(final String propertyName, final TypeAdapter<T, String> adapter) {
-        String value = map.get(propertyName);
+    public <T> T getMandatoryProperty(final String propertyName, final Function<String, Optional<T>> adapter) {
+        final String value = map.get(propertyName);
         if (value == null) {
             throw new RuntimeException("Missing mandatory property: " + propertyName);
         }
-        ValidatedReturn<T> adapterResult = adapter.adapt(value);
-        if (adapterResult.isValid() == false) {
+        final Optional<T> adapterResult = adapter.apply(value);
+        if (adapterResult.isPresent() == false) {
             throw new RuntimeException("Invalid value for mandatory property. propertyName=" + propertyName + ", value=" + value);
         }
-        return adapterResult.value();
+        return adapterResult.get();
     }
 
     @Override
@@ -58,13 +58,13 @@ public final class SimpleConfigAccessor implements ConfigAccessor {
     }
 
     @Override
-    public <T> T getOptionalProperty(final String propertyName, final TypeAdapter<T, String> adapter, final T defaultValue) {
+    public <T> T getOptionalProperty(final String propertyName, final Function<String, Optional<T>> adapter, final T defaultValue) {
         final String propertyValue = map.get(propertyName);
-        ValidatedReturn<T> adapterResult = adapter.adapt(propertyValue);
-        if (adapterResult.isValid() == false) {
+        final Optional<T> adapterResult = adapter.apply(propertyValue);
+        if (adapterResult.isPresent() == false) {
             return defaultValue;
         }
-        return adapterResult.value();
+        return adapterResult.get();
     }
 
 }// class
