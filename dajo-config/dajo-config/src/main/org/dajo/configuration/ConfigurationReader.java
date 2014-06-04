@@ -4,33 +4,33 @@ import java.util.Properties;
 
 public final class ConfigurationReader {
 
-    static public ConfigAccessor loadExternalProperties(final String... externalPropertiesFilenames) {
+    public static ConfigAccessor loadExternalProperties(final String... externalPropertiesFilenames) {
         final Properties properties = new Properties();
-        for(int i=0; i < externalPropertiesFilenames.length; ++i) {
+        for (int i = 0; i < externalPropertiesFilenames.length; ++i) {
             String currentPropertyFilename = externalPropertiesFilenames[i];
             PropertiesLoader.loadExternalProperties(properties, currentPropertyFilename);
         }
-        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
+        final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 
-    static public ConfigAccessor loadInternalProperties(final String... externalPropertiesFilenames) {
+    public static ConfigAccessor loadInternalProperties(final String... classpathPropertiesFilenames) {
         final Properties properties = new Properties();
-        for(int i=0; i < externalPropertiesFilenames.length; ++i) {
-            String currentPropertyFilename = externalPropertiesFilenames[i];
+        for (int i = 0; i < classpathPropertiesFilenames.length; ++i) {
+            String currentPropertyFilename = classpathPropertiesFilenames[i];
             PropertiesLoader.loadInternalClasspathProperties(PropertiesLoader.class.getClassLoader(), properties, currentPropertyFilename);
         }
-        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
+        final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 
-    static public ConfigAccessor loadInternalProperties(final ClassLoader classLoader, final String... externalPropertiesFilenames) {
+    public static ConfigAccessor loadInternalProperties(final ClassLoader classLoader, final String... classpathPropertiesFilenames) {
         final Properties properties = new Properties();
-        for(int i=0; i < externalPropertiesFilenames.length; ++i) {
-            String currentPropertyFilename = externalPropertiesFilenames[i];
+        for (int i = 0; i < classpathPropertiesFilenames.length; ++i) {
+            String currentPropertyFilename = classpathPropertiesFilenames[i];
             PropertiesLoader.loadInternalClasspathProperties(classLoader, properties, currentPropertyFilename);
         }
-        PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
+        final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
     }
 

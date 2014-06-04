@@ -27,9 +27,11 @@
     <property name="tmp.classes.dir" value="${tmp.build.dir}/classes"/>
 
     <path id="project.classpath">
-        <fileset dir="${jar.javac.lib.dir}">
-            <include name="slf4j-api-1.7.2.jar"/>
-            <include name="dajo-types-0.3.2.jar"/>
+        <fileset dir="${jar.javac.lib.dir}/dajo-types">
+            <include name="dajo-types-0.3.4.jar"/>
+        </fileset>
+        <fileset dir="${jar.javac.lib.dir}/sl4j">
+            <include name="slf4j-api-1.7.7.jar"/>
         </fileset>
     </path>
 
@@ -55,7 +57,7 @@
         <javac
           optimize="true" deprecation="true" encoding="UTF-8" includeantruntime="false"
           destdir="${tmp.classes.dir}" debug="${jar.javac.debug}"
-          target="${jar.javac.target}" source="${jar.javac.source}" bootclasspath="${jar.javac.bootclasspath16}">
+          target="${jar.javac.target}" source="${jar.javac.source}">
             <src path="${tmp.classes.dir}" />
             <classpath refid="project.classpath"/>
         </javac>
