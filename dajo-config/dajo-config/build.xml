@@ -8,8 +8,8 @@
 
     <property name="source.dir" value="src/main"/>
 	
-    <!-- for default value -->
-    <property name="tmp.dir" value="tmp"/>
+    <!-- for default value this way we dont popute our workspace when searching for files/classes -->
+    <property name="tmp.dir" value="../tmp"/>
 
     <!-- Dynamic properties -->
 	<buildnumber file="${ant.project.name}.number"/>
