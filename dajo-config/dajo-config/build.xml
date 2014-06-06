@@ -8,7 +8,7 @@
 
     <property name="source.dir" value="src/main"/>
 	
-    <!-- for default value -->
+    <!-- for default value this way we dont polute our workspace when searching for files/classes -->
     <property name="tmp.dir" value="../tmp"/>
 
     <!-- Dynamic properties -->
