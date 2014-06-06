@@ -1,7 +1,0 @@
-# Build configuration customized for local
-mybuild.number
-
-# Directories generated during the jar build
-/build
-/tmp
-/bin

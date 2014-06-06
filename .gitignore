@@ -1,1 +1,12 @@
-*.local
+# Local files used by thd build but should never be commited
+*.local.*
+
+# Default temporary directory for the builds
+dajo-config/tmp/
+
+# Directories generated during the jar build
+dajo-config/dajo-config/build/
+dajo-config/dajo-config/bin/
+
+
+
