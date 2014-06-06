@@ -9,12 +9,12 @@
     <property name="source.dir" value="src/main"/>
 	
     <!-- for default value -->
-    <property name="tmp.dir" value="tmp"/>
+    <property name="tmp.dir" value="../tmp"/>
 
     <!-- Dynamic properties -->
 	<buildnumber file="${ant.project.name}.number"/>
     <tstamp>
-        <format property="build.timeid" pattern="yyyyMMdd-hhmmss" timezone="UTC"/>
+        <format property="build.timeid" pattern="yyyyMMdd-hhmmss-SSS" timezone="UTC"/>
     </tstamp>
 	<property name="build.id" value="${build.number}-${build.timeid}"/>
     <tstamp>

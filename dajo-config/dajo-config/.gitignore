@@ -1,6 +1,5 @@
 # Build configuration customized for local
-build.local.properties
-!build.local.properties.copy
+mybuild.number
 
 # Directories generated during the jar build
 /build

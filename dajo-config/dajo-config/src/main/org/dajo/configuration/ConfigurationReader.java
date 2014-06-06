@@ -8,7 +8,7 @@ public final class ConfigurationReader {
         final Properties properties = new Properties();
         for (int i = 0; i < externalPropertiesFilenames.length; ++i) {
             String currentPropertyFilename = externalPropertiesFilenames[i];
-            PropertiesLoader.loadExternalProperties(properties, currentPropertyFilename);
+            PropertiesLoader.loadExternalPropertiesFile(properties, currentPropertyFilename);
         }
         final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
@@ -18,7 +18,7 @@ public final class ConfigurationReader {
         final Properties properties = new Properties();
         for (int i = 0; i < classpathPropertiesFilenames.length; ++i) {
             String currentPropertyFilename = classpathPropertiesFilenames[i];
-            PropertiesLoader.loadInternalClasspathProperties(PropertiesLoader.class.getClassLoader(), properties, currentPropertyFilename);
+            PropertiesLoader.loadClasspathPropertiesFile(properties, currentPropertyFilename);
         }
         final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
@@ -28,7 +28,7 @@ public final class ConfigurationReader {
         final Properties properties = new Properties();
         for (int i = 0; i < classpathPropertiesFilenames.length; ++i) {
             String currentPropertyFilename = classpathPropertiesFilenames[i];
-            PropertiesLoader.loadInternalClasspathProperties(classLoader, properties, currentPropertyFilename);
+            PropertiesLoader.loadClasspathPropertiesFile(classLoader, properties, currentPropertyFilename);
         }
         final PropertiesConfigAccessor config = new PropertiesConfigAccessor(properties);
         return config;
